@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSONLens</title>
+<meta name="description" content="Format, validate, minify and explore JSON.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img src="assets/logo.svg" alt="" width="28" height="28"><span>JSONLens</span></div>
+  <div class="toolbar" role="toolbar" aria-label="JSON actions">
+    <button id="btn-format" title="Format (Ctrl+Enter)"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h14"/></svg>Format</button>
+    <button id="btn-minify" title="Minify"><svg viewBox="0 0 24 24"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>Minify</button>
+    <button id="btn-import" title="Import a .json file"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Import</button>
+    <button id="btn-copy" title="Copy editor contents"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>Copy</button>
+    <button id="btn-clear" title="Clear everything"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg>Clear</button>
+    <select id="examples" aria-label="Load an example"><option value="">Examples</option><option value="user">User profile</option><option value="pkg">package.json</option><option value="geo">GeoJSON</option></select>
+    <button id="btn-theme" class="icon" aria-label="Toggle theme"><svg viewBox="0 0 24 24"><path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10z"/></svg></button>
+    <input id="file" type="file" accept=".json,application/json" hidden>
+  </div>
+</header>
+<main>
+  <section class="pane" aria-label="Editor">
+    <div class="pane-head"><h2>Input</h2><span id="status" class="status" role="status">Waiting for JSON</span></div>
+    <div class="editor-wrap"><div id="gutter" aria-hidden="true">1</div><textarea id="editor" spellcheck="false" autocomplete="off" placeholder="Paste JSON here, drop a file, or pick an example"></textarea></div>
+  </section>
+  <section class="pane" aria-label="Inspector">
+    <div class="pane-head"><h2>Inspector</h2>
+      <input id="search" type="search" placeholder="Search keys and values" aria-label="Search keys and values">
+      <button id="btn-expand" class="ghost">Expand all</button><button id="btn-collapse" class="ghost">Collapse all</button></div>
+    <div id="stats" class="stats" hidden></div>
+    <div id="tree" class="tree"></div>
+    <div id="empty" class="empty">
+      <svg viewBox="0 0 64 64" width="72" height="72"><circle cx="28" cy="28" r="16"/><path d="M40 40l14 14"/><path d="M22 24h12M22 30h8"/></svg>
+      <p>Nothing to inspect yet.</p><span>Valid JSON appears here as a tree you can fold, search and copy from.</span>
+    </div>
+  </section>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
